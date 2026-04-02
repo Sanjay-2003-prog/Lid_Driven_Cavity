@@ -1,0 +1,83 @@
+# -----------------------
+# Time stepping
+# -----------------------
+dt = 1e-6
+Re = 100
+maxSteps = -1
+finalTime = 100
+SaveEvery = 10000
+
+#do_subcycle = 1
+#do_reflux = 1
+
+# -----------------------
+# CFL conditions
+# -----------------------
+cfl_adv = 0.5
+cfl_diff = 0.25
+
+# -----------------------
+# Steady state detection
+# -----------------------
+#isSteadyProblem = true
+steadyTol = 1e-6
+
+# -----------------------
+# Geometry settings
+# -----------------------
+geometry.prob_lo     = 0.0 0.0
+geometry.prob_hi     = 1.0 1.0
+geometry.is_periodic = 0   0
+geometry.coord_sys   = 0           # Cartesian
+amr.n_cell           = 32 32    # Grid resolution
+
+# -----------------------
+# AMR settings
+# -----------------------
+amr.max_level        = 0
+amr.ref_ratio        = 2 2 
+amr.regrid_int       = 2
+amr.n_error_buf      = 2
+amr.max_grid_size    = 32
+amr.blocking_factor  = 16
+amr.vorterr          = 1.0 1.5 2.0 2.5
+
+# -----------------------
+# Refinement sensitivity
+# -----------------------
+refine_threshold = 0.01
+
+
+# ----------------------
+# GPU Memory Allocation
+# ----------------------
+
+#amrex.the_arena_init_size = 524288000   # 500 MB in bytes
+#amrex.the_arena_is_managed = 1          # makes available from both CPU and GPU
+#amrex.the_managed_arena_init_size = 524288000
+#amrex.the_device_arena_init_size = 524288000
+#amrex.the_pinned_arena_init_size = 524288000
+
+
+# ---------------------
+# HYPRE Settings
+# ---------------------
+hypre.solver = pcg
+hypre.preconditioner = boomerang
+hypre.verbose = 0
+
+hypre.boomeramg_max_levels = 25
+hypre.boomeramg_coarsen_type = PMIS #PMIS for GPU #HMIS for CPU
+hypre.boomeramg_interp_type = 6
+hypre.boomeramg_relax_type = 3
+hypre.boomeramg_num_sweeps = 2
+
+# -----------------------
+# BL PROFILING
+# -----------------------
+tiny_profiler.enabled = 1    # 1/0 = true/false
+tiny_profiler.verbose = 0
+tiny_profiler.print_threshold = 0.01
+tiny_profiler.output_file = "GPU_timings.txt"
+tiny_profiler.device_synchronize_around_region = 1
+tiny_profiler.show_expensive_stats = 0
