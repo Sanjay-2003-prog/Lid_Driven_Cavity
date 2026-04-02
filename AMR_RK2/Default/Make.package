@@ -1,0 +1,15 @@
+# List of source files for compilation
+CEXE_sources += main.cpp
+CEXE_sources += NavierStokesSolver.cpp
+CEXE_sources += AMRGrid.cpp
+CEXE_sources += PredictVelocity.cpp
+CEXE_sources += PressurePoisson.cpp
+CEXE_sources += CorrectVelocity.cpp
+CEXE_sources += DerivedFields.cpp
+CEXE_sources += FillBC.cpp
+
+# Header files (optional, for clarity/documentation)
+CEXE_headers += NavierStokesSolver.H
+CEXE_headers += defs.H
+CEXE_headers += FillBC.H
+

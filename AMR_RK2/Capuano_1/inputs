@@ -1,0 +1,48 @@
+# -----------------------
+# Time stepping
+# -----------------------
+dt = 1e-6
+Re = 1000
+maxSteps = -1
+finalTime = 100
+SaveEvery = 10000
+
+do_subcycle = 1
+do_reflux = 1
+
+# -----------------------
+# CFL conditions
+# -----------------------
+cfl_adv = 0.5
+cfl_diff = 0.25
+
+# -----------------------
+# Steady state detection
+# -----------------------
+#isSteadyProblem = true
+steadyTol = 1e-6
+
+# -----------------------
+# Geometry settings
+# -----------------------
+geometry.prob_lo     = 0.0 0.0
+geometry.prob_hi     = 1.0 1.0
+geometry.is_periodic = 0   0
+geometry.coord_sys   = 0           # Cartesian
+amr.n_cell           = 128 128  # Grid resolution
+
+# -----------------------
+# AMR settings
+# -----------------------
+amr.max_level        = 0 
+amr.ref_ratio        = 2 2 
+amr.regrid_int       = 2
+amr.n_error_buf      = 2
+amr.max_grid_size    = 32
+amr.blocking_factor  = 16
+amr.vorterr          = 1.0 1.5 2.0 2.5
+
+# -----------------------
+# Refinement sensitivity
+# -----------------------
+refine_threshold = 0.01
